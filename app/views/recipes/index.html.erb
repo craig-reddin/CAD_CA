@@ -1,0 +1,41 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<p class="new-recipe-heading" style="color: green"><%= notice %></p>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="<%= new_recipe_path %>">Recipe App</a>
+    
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to "New Recipe", new_recipe_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Back to Recipes", recipes_path, class: "nav-link", data: { turbo: false }  %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<% content_for :title, "Recipes" %>
+
+<h1 class="new-recipe-heading">Recipes</h1>
+
+<div id="recipes">
+  <% @recipes.each do |recipe| %>
+    <%= render recipe %>
+    <div class="new-recipe-heading">
+      <%= link_to "Show this recipe", recipe %>
+    </div>
+  <% end %>
+</div>
+<div class="new-recipe-heading">
+  <%= link_to "New recipe", new_recipe_path %>
+</div>
+
+
+
+
+
+
+
+

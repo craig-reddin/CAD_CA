@@ -1,0 +1,56 @@
+<div class="container d-flex justify-content-center">
+  <div class="col-md-8 col-lg-6" >
+    <div class="form-wrapper mt-4 p-4 border rounded bg-white shadow text-dark">
+      <!-- Option: you can change bg-white to bg-light for a very light background or bg-secondary for a darker background -->
+
+      <div class="mb-3">
+        <p class="form-group">
+          <strong>Recipe name:</strong>
+          <%= recipe.recipe_name %>
+        </p>
+      </div>
+      
+      <div class="mb-3">
+        <p class="text-black">
+          <strong>Meal type:</strong>
+          <%= recipe.meal_type %>
+        </p>
+      </div>
+
+      <div class="mb-3">
+        <p class="text-black">
+          <strong>Source:</strong>
+          <%= recipe.source %>
+        </p>
+      </div>
+
+      <div class="mb-3">
+        <p class="text-black">
+          <strong>Ingredients:</strong>
+          <%= recipe.ingredients %>
+        </p>
+      </div>
+
+      <div class="mb-3">
+        <p class="text-black">
+          <strong>Instructions:</strong>
+          <%= recipe.instructions %>
+        </p>
+      </div>
+
+      <div class="mb-3">
+        <p class="text-black">
+          <strong>Preparation time:</strong></p>
+          <%= recipe.preperation_time %> minutes
+        
+      </div>
+
+      <div class="mb-3">
+        <p class="text-black">
+          <strong>Cooking time:</strong>
+          <%= recipe.cooking_time %> minutes
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

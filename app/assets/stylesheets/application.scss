@@ -1,0 +1,131 @@
+// /*
+//  * This is a manifest file that'll be compiled into application.css, which will include all the files
+//  * listed below.
+//  *
+//  * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+//  * vendor/assets/stylesheets directory can be referenced here using a relative path.
+//  *
+//  * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+//  * compiled file so the styles you add here take precedence over styles defined in any other CSS
+//  * files in this directory. Styles in this file should be added after the last require_* statement.
+//  * It is generally better to create a new file per style scope.
+//  *
+//  *= require_tree .
+//  *= require_self
+//  */
+// @import "bootstrap";
+
+// .custom-destroy-btn {
+//   background-color: #ff0000; /* Example: Brighter red */
+//   border-color: #aa0000; /* Darker border for contrast */
+//   color: #ffffff; /* Text color */
+//   padding: 10px 20px; /* Bigger button with more padding */
+//   font-weight: bold;
+//   justify-content: center;
+//   align-items: center; /* Bold text */
+// }
+
+// .show {
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+// .new-recipe-heading {
+//   display: flex;
+//   justify-content: center;
+//   padding-bottom: 30px;
+// }
+
+// .form-wrapper {
+  
+//   width: 80vh;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 120vh;
+//   background-color: #000000;
+//   flex-direction: column;
+// }
+// p {
+//   color: #ffffff;
+// }
+
+// .form-container {
+//   padding-top: 20px;
+//   padding-bottom: 20px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 120vh;
+//   background-color: #caf0f8;
+// }
+
+// .form-group label {
+//   color: white;
+//   display: block; /* Ensures the label takes up the full width */
+//   text-align: center; /* Centers the text */
+//   margin-bottom: 10px; /* Adds some space between the label and the input */
+// }
+
+// .form-content {
+//   width: 100%;
+//   max-width: 600px; /* Adjusted for better form width */
+//   padding: 40px; /* Increased padding */
+//   background-color: #ffffff;
+//   border-radius: 8px;
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+//   margin-top: 20px;
+// }
+
+// .form-group {
+//   margin: 20px; /* Adds space between form fields */
+
+// }
+
+// .btn-white {
+//   background-color: #ffffff;
+//   color: #007bff;
+//   border-color: #ccc;
+//   padding: 10px 80px; /* More padding for better button size */
+//   font-size: 16px; /* Larger font size */
+//   display: flex;
+//   justify-content: center; /* Center horizontally */
+//   margin-top: 30px;
+// }
+
+// .btn-white:hover {
+//   background-color: #f8f9fa;
+//   color: #0056b3;
+// }
+
+// .response {
+//   padding: 10px;
+//   background-color: #f8f8f8;
+//   border: 1px solid #ccc;
+//   margin-top: 20px;
+// }
+
+// .response li {
+//   margin-bottom: 10px;
+// }
+
+// p .response{
+//   color:black ;
+// }
+
+
+// input[type="text"],
+// input[type="number"],
+// textarea {
+//   width: 100%; /* Ensures input fields fill the container */
+//   padding: 10px; /* Adds padding inside input fields for better visibility */
+// }
+
+// input[type="text"]:focus,
+// input[type="number"]:focus,
+// textarea:focus {
+//   border-color: #80bdff;
+//   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Bootstrap focus glow */
+// }
+

@@ -1,0 +1,59 @@
+<div class="container d-flex justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <div class="form-wrapper mt-4 p-4 border rounded bg-light shadow">
+      <%= form_with(model: recipe, local: true) do |form| %>
+
+        <% if recipe.errors.any? %>
+          <div class="alert alert-danger">
+            <h4><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h4>
+            <ul>
+              <% recipe.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="mb-3">
+          <%= form.label :recipe_name, class: "form-label" %>
+          <%= form.text_field :recipe_name, class: 'form-control', required: true %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :meal_type, class: "form-label" %>
+          <%= form.text_field :meal_type, class: 'form-control', required: true %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :source, class: "form-label" %>
+          <%= form.text_field :source, class: 'form-control', required: true %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :ingredients, class: "form-label" %>
+          <%= form.text_area :ingredients, class: 'form-control', rows: 3, required: true %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :instructions, class: "form-label" %>
+          <%= form.text_area :instructions, class: 'form-control', rows: 3, required: true %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :preparation_time, class: "form-label" %>
+          <%= form.number_field :preperation_time, class: 'form-control', required: true %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :cooking_time, class: "form-label" %>
+          <%= form.number_field :cooking_time, class: 'form-control', required: true %>
+        </div>
+
+        <div class="d-grid">
+          <%= form.submit 'Save Recipe', class: 'btn btn-primary' %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<% content_for :title, "New recipe" %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="<%= new_recipe_path %>">Recipe App</a>
+    
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to "New Recipe", new_recipe_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Back to Recipes", recipes_path, class: "nav-link", data: { turbo: false }  %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<h1 class = "new-recipe-heading">New recipe</h1>
+
+<div class="container">
+  <h2 class="mt-4">Generate a New Recipe</h2>
+
+  <%= form_with url: generate_recipe_recipes_path, method: :post, local: true, data: { turbo: false } do |form| %>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <%= form.label :ingredients, class: "form-label" %>
+        <%= form.text_field :ingredients, placeholder: "e.g., eggs, milk, flour", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <%= form.label :meal_type, class: "form-label" %>
+        <%= form.select :meal_type, ['breakfast', 'lunch', 'dinner', 'snack'], prompt: 'Select a meal type', class: "form-select" %>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <%= form.submit "Generate Recipe", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if flash[:generated_recipe] %>
+    <div class="alert alert-success mt-4">
+      <h3>Generated Recipe</h3>
+      <pre class="response"><%= flash[:generated_recipe] %></pre>
+    </div>
+  <% elsif flash[:alert] %>
+    <div class="alert alert-danger mt-4">
+      <p><%= flash[:alert] %></p>
+    </div>
+  <% end %>
+</div>
+
+
+  <%= render "form", recipe: @recipe %>
+
+  <br>
+
+<div class="new-recipe-heading">
+  <%= link_to "Back to recipes", recipes_path %>
+</div>
