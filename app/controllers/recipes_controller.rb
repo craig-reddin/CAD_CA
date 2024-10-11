@@ -60,7 +60,8 @@ class RecipesController < ApplicationController
   end
 
 def generate_recipe
-  ingredients = params[:ingredients].split(',')
+
+  ingredients = params[:ingredients].split(",")
   meal_type = params[:meal_type]
   api_keyer = ENV["OPENAI_API_KEY"]
   recipe_generator = RecipeTools::ChatgptRecipeGenerator.new(api_keyer)
@@ -83,12 +84,12 @@ end
     @recipe = Recipe.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
+   # Only allow a list of trusted parameters through.
    def recipe_params
      params.require(:recipe).permit(:recipe_name, :meal_type, :source, :ingredients, :instructions, :preperation_time, :cooking_time)
    end
- 
-  
+
+
 
 def show_generated_recipe
   @generated_recipe = session[:generated_recipe] # Retrieve from session
@@ -98,5 +99,4 @@ end
   def show_generated_recipe
     @generated_recipe = params[:generated_recipe]
   end
-
 end
