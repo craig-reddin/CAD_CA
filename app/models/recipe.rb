@@ -4,6 +4,7 @@ class Recipe < ApplicationRecord
   validates :source, presence: true
   validates :ingredients, presence: true
   validates :instructions, presence: true
-  validates :preperation_time, presence: true, numericality: { only_integer: true }
-  validates :cooking_time, presence: true, numericality: { only_integer: true }
+  validates :preperation_time, presence: true, numericality: { greater_than: 0, message: "must be greater than zero" }
+  validates :cooking_time, presence: true, numericality: { greater_than: 0, message: "must be greater than zero" }
+  validates :meal_type, presence: true
 end

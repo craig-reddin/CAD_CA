@@ -38,6 +38,41 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to recipe_url(@recipe)
   end
 
+  test "should not update recipe cooking time less than 1" do
+    patch recipe_url(@recipe), params: { recipe: { cooking_time: "", ingredients: @recipe.ingredients, instructions: @recipe.instructions, meal_type: @recipe.meal_type, preperation_time: @recipe.preperation_time, recipe_name: @recipe.recipe_name, source: @recipe.source } }
+    assert_response :unprocessable_entity
+  end
+
+  test "should not update recipe no ingredients" do
+    patch recipe_url(@recipe), params: { recipe: { cooking_time: @recipe.cooking_time, ingredients: "", instructions: @recipe.instructions, meal_type: @recipe.meal_type, preperation_time: @recipe.preperation_time, recipe_name: @recipe.recipe_name, source: @recipe.source } }
+    assert_response :unprocessable_entity
+  end
+
+  test "should not update recipe no instructions" do
+    patch recipe_url(@recipe), params: { recipe: { cooking_time: @recipe.cooking_time, ingredients: @recipe.ingredients, instructions: "", meal_type: @recipe.meal_type, preperation_time: @recipe.preperation_time, recipe_name: @recipe.recipe_name, source: @recipe.source } }
+    assert_response :unprocessable_entity
+  end
+
+  test "should not update recipe no meal type" do
+    patch recipe_url(@recipe), params: { recipe: { cooking_time: @recipe.cooking_time, ingredients: @recipe.ingredients, instructions: @recipe.instructions, meal_type: "", preperation_time: @recipe.preperation_time, recipe_name: @recipe.recipe_name, source: @recipe.source } }
+    assert_response :unprocessable_entity
+  end
+
+  test "should not update recipe preperation time is less than one" do
+    patch recipe_url(@recipe), params: { recipe: { cooking_time: @recipe.cooking_time, ingredients: @recipe.ingredients, instructions: @recipe.instructions, meal_type: @recipe.meal_type, preperation_time: 0, recipe_name: @recipe.recipe_name, source: @recipe.source } }
+    assert_response :unprocessable_entity
+  end
+
+  test "should not update no recipe name" do
+    patch recipe_url(@recipe), params: { recipe: { cooking_time: @recipe.cooking_time, ingredients: @recipe.ingredients, instructions: @recipe.instructions, meal_type: @recipe.meal_type, preperation_time: @recipe.preperation_time, recipe_name: "", source: @recipe.source } }
+    assert_response :unprocessable_entity
+  end
+
+  test "should not update no recipe source" do
+    patch recipe_url(@recipe), params: { recipe: { cooking_time: @recipe.cooking_time, ingredients: @recipe.ingredients, instructions: @recipe.instructions, meal_type: @recipe.meal_type, preperation_time: @recipe.preperation_time, recipe_name: @recipe.recipe_name, source: "" } }
+    assert_response :unprocessable_entity
+  end
+
   test "should destroy recipe" do
     assert_difference("Recipe.count", -1) do
       delete recipe_url(@recipe)

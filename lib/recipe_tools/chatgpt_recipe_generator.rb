@@ -43,7 +43,10 @@ module RecipeTools
     end
 
     def parse_response(response)
-      if response && response['choices'] && response['choices'].any?
+      puts(response)
+      response = JSON.parse(response) if response.is_a?(String)
+
+      if response && response['choices'].is_a?(Array) && response['choices'].any?
         response['choices'][0]['message']['content']
       else
         "Sorry, I couldn't generate a recipe at this time."

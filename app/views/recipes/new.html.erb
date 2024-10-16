@@ -1,64 +1,78 @@
 <% content_for :title, "New recipe" %>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
+  <div class="container">
     <a class="navbar-brand" href="<%= new_recipe_path %>">Recipe App</a>
-    
-    <div class="collapse navbar-collapse">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <%= link_to "New Recipe", new_recipe_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Back to Recipes", recipes_path, class: "nav-link", data: { turbo: false }  %>
+          <%= link_to "Back to Recipes", recipes_path, class: "nav-link", data: { turbo: false } %>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-<h1 class = "new-recipe-heading">New recipe</h1>
 
-<div class="container">
-  <h2 class="mt-4">Generate a New Recipe</h2>
+<div class="container mt-4">
+  <h1 class="new-recipe-heading">New Recipe</h1>
 
-  <%= form_with url: generate_recipe_recipes_path, method: :post, local: true, data: { turbo: false } do |form| %>
-    <div class="row mb-3">
-      <div class="col-md-6">
-        <%= form.label :ingredients, class: "form-label" %>
-        <%= form.text_field :ingredients, placeholder: "e.g., eggs, milk, flour", class: "form-control" %>
-      </div>
-    </div>
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <h2 class="mt-4">Generate a New Recipe</h2>
 
-    <div class="row mb-3">
-      <div class="col-md-6">
-        <%= form.label :meal_type, class: "form-label" %>
-        <%= form.select :meal_type, ['breakfast', 'lunch', 'dinner', 'snack'], prompt: 'Select a meal type', class: "form-select" %>
-      </div>
-    </div>
+      <%= form_with url: generate_recipe_recipes_path, method: :post, local: true, data: { turbo: false } do |form| %>
+        <div class="mb-3">
+          <%= form.label :ingredients, class: "form-label" %>
+          <%= form.text_field :ingredients, placeholder: "e.g., eggs, milk, flour", class: "form-control", maxlength: 50, id: "ingredients" %>
+          <small id="charCount" class="form-text text-muted">50 characters remaining</small>
+          </div>
 
-    <div class="row mb-3">
-      <div class="col-md-6">
-        <%= form.submit "Generate Recipe", class: "btn btn-primary" %>
-      </div>
-    </div>
-  <% end %>
+        <div class="mb-3">
+          <%= form.label :meal_type, class: "form-label" %>
+          <%= form.select :meal_type, ['breakfast', 'lunch', 'dinner', 'snack'], prompt: 'Select a meal type', class: "form-select" %>
+        </div>
 
-  <% if flash[:generated_recipe] %>
-    <div class="alert alert-success mt-4">
-      <h3>Generated Recipe</h3>
-      <pre class="response"><%= flash[:generated_recipe] %></pre>
+        <div class="mb-3">
+          <%= form.submit "Generate Recipe", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+
+      <% if flash[:generated_recipe] %>
+        <div class="alert alert-success mt-4">
+          <h3>Generated Recipe</h3>
+          <pre class="response"><%= flash[:generated_recipe] %></pre>
+        </div>
+      <% elsif flash[:alert] %>
+        <div class="alert alert-danger mt-4">
+          <p><%= flash[:alert] %></p>
+        </div>
+      <% end %>
     </div>
-  <% elsif flash[:alert] %>
-    <div class="alert alert-danger mt-4">
-      <p><%= flash[:alert] %></p>
-    </div>
-  <% end %>
+  </div>
+  <%= render 'form', recipe: @recipe %>
+  <div class="text-center mt-4">
+    <%= link_to "Back to Recipes", recipes_path, class: "btn btn-secondary" %>
+  </div>
 </div>
 
+#https://www.codexworld.com/live-character-counter-javascript/
+<script>
+ document.addEventListener("turbo:load", function() {
+  const input = document.getElementById("ingredients");
+  const charCount = document.getElementById("charCount");
+  const maxChars = 50;
 
-  <%= render "form", recipe: @recipe %>
-
-  <br>
-
-<div class="new-recipe-heading">
-  <%= link_to "Back to recipes", recipes_path %>
-</div>
+  if (input) { 
+    input.addEventListener("input", function() {
+      const remaining = maxChars - input.value.length;
+      charCount.textContent = remaining + " characters remaining";
+    });
+  }
+});
+</script>
